@@ -16,14 +16,23 @@
         </select>
       </p>
 
+      <p>
+        Sort by price:
+        <select ng-model="$ctrl.orderByPrice">
+          <option value="price" selected="selected">lowest first</option>
+          <option value="-price">highest first</option>
+        </select>
+      </p>
+
     </div>
     <div class="col-md-10">
       <!--Body content-->
 
       <ul class="phones">
-        <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp">
+        <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy: [$ctrl.orderProp, $ctrl.orderByPrice] ">
           <span>{{phone.name}}</span>
           <p>{{phone.snippet}}</p>
+          <p style="background-color: #{{phone.price%1000}}888">{{phone.price}}</p>
         </li>
       </ul>
 
